@@ -3,14 +3,12 @@ Practice reading and writing files
 """
 from sys import argv
 from os.path import exists
+from helper_functions import append_txt
 
 if len(argv) == 2:
     script, filename = argv
 else:
-    filename = raw_input("What file do you want to open? ")
-
-if filename[-4:] != ".txt":
-    filename += ".txt"
+    filename = append_txt(raw_input("What file do you want to open? "))
 
 file_exists = exists(filename)
 if file_exists:

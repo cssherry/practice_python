@@ -4,14 +4,9 @@ Then you can overwrite lines or append
 """
 from sys import argv
 from os.path import exists
+from helper_functions import append_txt
 
 exit_command = "exit()"
-
-def append_txt(filename):
-    """To append .txt extension if it doesn't already exist"""
-    if filename[-4:] != ".txt":
-        filename += ".txt"
-    return filename
 
 def get_input(contents):
     """Query user for line number, and line they want"""
