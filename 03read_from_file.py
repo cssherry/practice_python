@@ -1,5 +1,5 @@
 """
-Practice reading from files
+Practice reading and writing files
 """
 from sys import argv
 
@@ -11,21 +11,25 @@ else:
 if filename[-4:] != ".txt":
     filename += ".txt"
 
-# r+ == a+ == a
-# w+ == w
-txt = open(filename, 'a+')
+txt = open(filename)
 print "\nHere's your file %r:" % filename
 print txt.read()
+txt.close()
 
-print "\nNow we're going to erase the contents"
-print "\tIf you don't want that, hit CTRL-C (^C)."
+# r+ writes like insert
+# a+ reads from end of file, writes to end of file
+# w+ will overwrite and read from end of file (file overwritten upon open)
+# r, w, and a will only do their respective tasks
+open_type = raw_input("Do you want to overwrite (w) or append (a)? ").lower()
+if open_type != "w" and open_type != "a" and open_type != "r":
+    print "Not a valid option. We're going to append"
+    open_type = "a"
 
-raw_input("\tIf you do want that, hit RETURN.")
-
-txt.truncate()
-
+print "\nNow we're going to do your action"
+print "If you don't want that, hit CTRL-C (^C)."
 print "\nNow I'm going to ask you for three lines."
 
+txt = open(filename, open_type + "+")
 line1 = raw_input("\tline 1: ")
 line2 = raw_input("\tline 2: ")
 line3 = raw_input("\tline 3: ")
@@ -39,5 +43,8 @@ txt.write("\n")
 txt.write(line3)
 txt.write("\n")
 
-print "\nAnd finally, we close it."
+# Need to seek to beginning of file or else overwrites
+txt.seek(0)
+print "\nYour file is now:"
+print txt.read()
 txt.close()
