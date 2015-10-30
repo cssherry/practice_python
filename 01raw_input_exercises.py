@@ -19,3 +19,8 @@ def get_input_shorter():
 
     print "So, you're %d old, %s tall and %d heavy." % (
         int(age), str(height), int(weight))
+
+def print_two(*args):
+    """This function tests out splatting arguments and then unpackaging"""
+    arg1, arg2 = args
+    print "arg1: %r, arg2: %r" % (arg1, arg2)
