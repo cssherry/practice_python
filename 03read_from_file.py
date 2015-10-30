@@ -2,6 +2,7 @@
 Practice reading and writing files
 """
 from sys import argv
+from os.path import exists
 
 if len(argv) == 2:
     script, filename = argv
@@ -11,10 +12,14 @@ else:
 if filename[-4:] != ".txt":
     filename += ".txt"
 
-txt = open(filename)
-print "\nHere's your file %r:" % filename
-print txt.read()
-txt.close()
+if exists(filename):
+    txt = open(filename)
+    print "\nHere's your file %r:" % filename
+    print txt.read()
+    txt.close()
+else:
+    print "\nThis will be a new file!"
+    print "\nIf you don't want that, hit CTRL-C (^C)."
 
 # r+ writes like insert
 # a+ reads from end of file, writes to end of file, creates file if it doesn't exist
