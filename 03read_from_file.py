@@ -17,7 +17,7 @@ print txt.read()
 txt.close()
 
 # r+ writes like insert
-# a+ reads from end of file, writes to end of file
+# a+ reads from end of file, writes to end of file, creates file if it doesn't exist
 # w+ will overwrite and read from end of file (file overwritten upon open)
 # r, w, and a will only do their respective tasks
 open_type = raw_input("Do you want to overwrite (w) or append (a)? ").lower()
