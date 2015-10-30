@@ -37,6 +37,8 @@ else:
 filename = append_txt(filename)
 if exists(filename):
     # file.read() returns back string, so need to make it an array and indexable
+    # Don't use file.readline() because that only works with r or a+ modes
+    # And in r mode you can't write, in a+ mode you can't overwrite
     file_content = open(filename).read().split("\n")
     print "\n", filename, " currently contains:"
     for idx, line in enumerate(file_content):
